@@ -1,6 +1,6 @@
 import { getCachedGlobal } from '@/utilities/getGlobals'
-import Link from "next/link"
-import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from "lucide-react"
+import Link from 'next/link'
+import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from 'lucide-react'
 import React from 'react'
 import type { Footer as FooterType } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
@@ -21,17 +21,25 @@ const SocialIcon = ({ platform }: { platform: string }) => {
 
 export async function Footer() {
   const footerData: FooterType = await getCachedGlobal('footer', 1)()
-  
+
   // Destructure the footer data with fallbacks
   const {
-    clinicInfo = { clinicName: 'Dr. Johnson Dental', description: 'Professional dental care for you and your family in a comfortable, friendly environment.' },
+    clinicInfo = {
+      clinicName: 'Dr. Johnson Dental',
+      description:
+        'Professional dental care for you and your family in a comfortable, friendly environment.',
+    },
     socialLinks = [],
     quickLinks = [],
     services = [],
-    contactInfo = { address: '123 Dental Way\nSmile City, SC 12345', phone: '(555) 123-4567', email: 'info@drjohnsondental.com' },
-    copyright = 'Dr. Johnson Dental Clinic. All rights reserved.'
+    contactInfo = {
+      address: '123 Dental Way\nSmile City, SC 12345',
+      phone: '(555) 123-4567',
+      email: 'info@drjohnsondental.com',
+    },
+    copyright = 'Dr. Johnson Dental Clinic. All rights reserved.',
   } = footerData || {}
-  
+
   // Process address for line breaks
   const addressLines = contactInfo?.address?.split('\n') || []
 
@@ -41,14 +49,12 @@ export async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">{clinicInfo?.clinicName}</h3>
-            <p className="text-gray-400 mb-4">
-              {clinicInfo?.description}
-            </p>
+            <p className="text-gray-400 mb-4">{clinicInfo?.description}</p>
             <div className="flex space-x-4">
               {socialLinks?.map((socialItem, i) => (
-                <CMSLink 
-                  key={i} 
-                  {...socialItem.link} 
+                <CMSLink
+                  key={i}
+                  {...socialItem.link}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   {SocialIcon({ platform: socialItem.platform })}
@@ -61,10 +67,13 @@ export async function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {(quickLinks && quickLinks.length > 0) ? (
+              {quickLinks && quickLinks.length > 0 ? (
                 quickLinks?.map((item, i) => (
                   <li key={i}>
-                    <CMSLink {...item.link} className="text-gray-400 hover:text-white transition-colors">
+                    <CMSLink
+                      {...item.link}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
                       {item.label}
                     </CMSLink>
                   </li>
@@ -73,25 +82,54 @@ export async function Footer() {
                 // Fallback links if no CMS data
                 <>
                   <li>
-                    <Link href="/" className="text-gray-400 hover:text-white transition-colors">Home</Link>
+                    <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                      Home
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/about" className="text-gray-400 hover:text-white transition-colors">About</Link>
+                    <Link
+                      href="/about"
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      About
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/services" className="text-gray-400 hover:text-white transition-colors">Services</Link>
+                    <Link
+                      href="/services"
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      Services
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</Link>
+                    <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">
+                      Blog
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/cases" className="text-gray-400 hover:text-white transition-colors">Before & After</Link>
+                    <Link
+                      href="/cases"
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      Before & After
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link>
+                    <Link
+                      href="/contact"
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      Contact
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/appointment" className="text-gray-400 hover:text-white transition-colors">Book Appointment</Link>
+                    <Link
+                      href="/appointment"
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      Book Appointment
+                    </Link>
                   </li>
                 </>
               )}
@@ -101,10 +139,13 @@ export async function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
-              {(services && services.length > 0) ? (
+              {services && services.length > 0 ? (
                 services?.map((service, i) => (
                   <li key={i}>
-                    <CMSLink {...service.link} className="text-gray-400 hover:text-white transition-colors">
+                    <CMSLink
+                      {...service.link}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
                       {service.serviceName}
                     </CMSLink>
                   </li>
@@ -113,19 +154,44 @@ export async function Footer() {
                 // Fallback services if no CMS data
                 <>
                   <li>
-                    <Link href="/services" className="text-gray-400 hover:text-white transition-colors">General Dentistry</Link>
+                    <Link
+                      href="/services"
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      General Dentistry
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/services" className="text-gray-400 hover:text-white transition-colors">Cosmetic Dentistry</Link>
+                    <Link
+                      href="/services"
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      Cosmetic Dentistry
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/services" className="text-gray-400 hover:text-white transition-colors">Restorative Care</Link>
+                    <Link
+                      href="/services"
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      Restorative Care
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/services" className="text-gray-400 hover:text-white transition-colors">Emergency Care</Link>
+                    <Link
+                      href="/services"
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      Emergency Care
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/services" className="text-gray-400 hover:text-white transition-colors">Pediatric Dentistry</Link>
+                    <Link
+                      href="/services"
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      Pediatric Dentistry
+                    </Link>
                   </li>
                 </>
               )}
@@ -159,7 +225,9 @@ export async function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} {copyright}</p>
+          <p>
+            &copy; {new Date().getFullYear()} {copyright}
+          </p>
         </div>
       </div>
     </footer>

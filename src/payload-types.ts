@@ -200,6 +200,7 @@ export interface Page {
     | FeaturedServicesBlock
     | TestimonialBlock
     | ServiceTabs
+    | ContactInfoBlock
   )[];
   meta?: {
     title?: string | null;
@@ -804,6 +805,27 @@ export interface ServiceTabs {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactInfoBlock".
+ */
+export interface ContactInfoBlock {
+  location?: {
+    address1?: string | null;
+    address2?: string | null;
+  };
+  contact?: {
+    phone?: string | null;
+    email?: string | null;
+  };
+  hours?: {
+    weekdays?: string | null;
+    weekend?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactInfo';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1095,6 +1117,7 @@ export interface PagesSelect<T extends boolean = true> {
         featuredServices?: T | FeaturedServicesBlockSelect<T>;
         testimonial?: T | TestimonialBlockSelect<T>;
         serviceTabs?: T | ServiceTabsSelect<T>;
+        contactInfo?: T | ContactInfoBlockSelect<T>;
       };
   meta?:
     | T
@@ -1254,6 +1277,32 @@ export interface ServiceTabsSelect<T extends boolean = true> {
               id?: T;
             };
         id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactInfoBlock_select".
+ */
+export interface ContactInfoBlockSelect<T extends boolean = true> {
+  location?:
+    | T
+    | {
+        address1?: T;
+        address2?: T;
+      };
+  contact?:
+    | T
+    | {
+        phone?: T;
+        email?: T;
+      };
+  hours?:
+    | T
+    | {
+        weekdays?: T;
+        weekend?: T;
       };
   id?: T;
   blockName?: T;

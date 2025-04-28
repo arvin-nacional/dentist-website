@@ -4,13 +4,11 @@ import type { CallToActionBlock as CTABlockProps } from '@/payload-types'
 
 import RichText from '@/components/RichText'
 import { CMSLink } from '@/components/Link'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
 
 export const CallToActionBlock: React.FC<CTABlockProps> = ({ links, richText }) => {
   return (
-    <div className="container">
-      <div className="bg-gray-50 p-8 rounded-lg max-w-4xl mx-auto">
+    <div className="w-full">
+      <div className="bg-gray-50 rounded-lg py-[100px] px-12">
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Ready to Transform Your Smile?</h2>
           <p className="text-gray-600">

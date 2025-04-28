@@ -10,6 +10,7 @@ import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { FeaturedServicesBlock } from '../../blocks/FeaturedServices/config'
 import { TestimonialBlock } from '../../blocks/Testimonial/config'
 import { serviceTabsFields as ServiceTabsBlock } from '../../blocks/ServiceTabs/config'
+import { contactInfoFields as ContactInfoBlock } from '../../blocks/ContactInfo/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -87,6 +88,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 FeaturedServicesBlock,
                 TestimonialBlock,
                 ServiceTabsBlock,
+                ContactInfoBlock,
               ],
               required: true,
               admin: {
