@@ -10,20 +10,102 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
-      name: 'navItems',
+      name: 'clinicInfo',
+      type: 'group',
+      fields: [
+        {
+          name: 'clinicName',
+          type: 'text',
+          defaultValue: 'Dr. Johnson Dental',
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          defaultValue: 'Professional dental care for you and your family in a comfortable, friendly environment.',
+        },
+      ],
+    },
+    {
+      name: 'socialLinks',
       type: 'array',
       fields: [
+        {
+          name: 'platform',
+          type: 'select',
+          options: [
+            { label: 'Facebook', value: 'facebook' },
+            { label: 'Twitter', value: 'twitter' },
+            { label: 'Instagram', value: 'instagram' },
+          ],
+          required: true,
+        },
         link({
           appearances: false,
         }),
       ],
-      maxRows: 6,
       admin: {
         initCollapsed: true,
-        components: {
-          RowLabel: '@/Footer/RowLabel#RowLabel',
-        },
       },
+    },
+    {
+      name: 'quickLinks',
+      type: 'array',
+      fields: [
+        {
+          name: 'label',
+          type: 'text',
+          required: true,
+        },
+        link({
+          appearances: false,
+        }),
+      ],
+      admin: {
+        initCollapsed: true,
+      },
+    },
+    {
+      name: 'services',
+      type: 'array',
+      fields: [
+        {
+          name: 'serviceName',
+          type: 'text',
+          required: true,
+        },
+        link({
+          appearances: false,
+        }),
+      ],
+      admin: {
+        initCollapsed: true,
+      },
+    },
+    {
+      name: 'contactInfo',
+      type: 'group',
+      fields: [
+        {
+          name: 'address',
+          type: 'textarea',
+          defaultValue: '123 Dental Way\nSmile City, SC 12345',
+        },
+        {
+          name: 'phone',
+          type: 'text',
+          defaultValue: '(555) 123-4567',
+        },
+        {
+          name: 'email',
+          type: 'email',
+          defaultValue: 'info@drjohnsondental.com',
+        },
+      ],
+    },
+    {
+      name: 'copyright',
+      type: 'text',
+      defaultValue: 'Dr. Johnson Dental Clinic. All rights reserved.',
     },
   ],
   hooks: {

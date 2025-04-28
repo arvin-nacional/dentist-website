@@ -54,6 +54,7 @@ export type SupportedTimezones =
   | 'Asia/Singapore'
   | 'Asia/Tokyo'
   | 'Asia/Seoul'
+  | 'Australia/Brisbane'
   | 'Australia/Sydney'
   | 'Pacific/Guam'
   | 'Pacific/Noumea'
@@ -148,7 +149,7 @@ export interface Page {
   id: string;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'dentalHero';
     richText?: {
       root: {
         type: string;
@@ -190,7 +191,15 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | FeaturedServicesBlock
+    | TestimonialBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -624,6 +633,7 @@ export interface Form {
             label?: string | null;
             width?: number | null;
             defaultValue?: string | null;
+            placeholder?: string | null;
             options?:
               | {
                   label: string;
@@ -724,6 +734,46 @@ export interface Form {
     | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedServicesBlock".
+ */
+export interface FeaturedServicesBlock {
+  heading?: string | null;
+  description?: string | null;
+  viewAllLink?: string | null;
+  services?:
+    | {
+        title: string;
+        description: string;
+        icon: 'Tooth' | 'Sparkles' | 'Wrench' | 'AlertCircle' | 'Baby' | 'ArrowRight';
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featuredServices';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialBlock".
+ */
+export interface TestimonialBlock {
+  heading?: string | null;
+  description?: string | null;
+  testimonials?:
+    | {
+        name: string;
+        quote: string;
+        rating: number;
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonial';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1015,6 +1065,8 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        featuredServices?: T | FeaturedServicesBlockSelect<T>;
+        testimonial?: T | TestimonialBlockSelect<T>;
       };
   meta?:
     | T
@@ -1111,6 +1163,44 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedServicesBlock_select".
+ */
+export interface FeaturedServicesBlockSelect<T extends boolean = true> {
+  heading?: T;
+  description?: T;
+  viewAllLink?: T;
+  services?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialBlock_select".
+ */
+export interface TestimonialBlockSelect<T extends boolean = true> {
+  heading?: T;
+  description?: T;
+  testimonials?:
+    | T
+    | {
+        name?: T;
+        quote?: T;
+        rating?: T;
+        image?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1355,6 +1445,7 @@ export interface FormsSelect<T extends boolean = true> {
               label?: T;
               width?: T;
               defaultValue?: T;
+              placeholder?: T;
               options?:
                 | T
                 | {
@@ -1562,8 +1653,13 @@ export interface Header {
  */
 export interface Footer {
   id: string;
-  navItems?:
+  clinicInfo?: {
+    clinicName?: string | null;
+    description?: string | null;
+  };
+  socialLinks?:
     | {
+        platform: 'facebook' | 'twitter' | 'instagram';
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
@@ -1582,6 +1678,54 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  quickLinks?:
+    | {
+        label: string;
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: string | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: string | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  services?:
+    | {
+        serviceName: string;
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: string | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: string | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  contactInfo?: {
+    address?: string | null;
+    phone?: string | null;
+    email?: string | null;
+  };
+  copyright?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1613,9 +1757,16 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  clinicInfo?:
     | T
     | {
+        clinicName?: T;
+        description?: T;
+      };
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
         link?:
           | T
           | {
@@ -1627,6 +1778,44 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  quickLinks?:
+    | T
+    | {
+        label?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  services?:
+    | T
+    | {
+        serviceName?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  contactInfo?:
+    | T
+    | {
+        address?: T;
+        phone?: T;
+        email?: T;
+      };
+  copyright?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
