@@ -10,9 +10,18 @@ import { CollectionArchive } from '@/components/CollectionArchive'
 export const ArchiveBlock: React.FC<
   ArchiveBlockProps & {
     id?: string
+    heading?: string | null
   }
 > = async (props) => {
-  const { id, categories, introContent, limit: limitFromProps, populateBy, selectedDocs } = props
+  const {
+    id,
+    categories,
+    description,
+    limit: limitFromProps,
+    populateBy,
+    selectedDocs,
+    heading,
+  } = props
 
   const limit = limitFromProps || 3
 
@@ -54,11 +63,17 @@ export const ArchiveBlock: React.FC<
 
   return (
     <div className="my-16" id={`block-${id}`}>
-      {introContent && (
-        <div className="container mb-16">
-          <RichText className="ms-0 max-w-[48rem]" data={introContent} enableGutter={false} />
+      <div className="container mx-auto px-4">
+        <div className="text-center">
+          {heading && <h2 className="text-3xl font-bold text-foreground mb-4">{heading}</h2>}
+          {description && (
+            <div className="mb-16">
+              <p className="text-muted-foreground max-w-2xl mx-auto">{description}</p>
+            </div>
+          )}
         </div>
-      )}
+      </div>
+
       <CollectionArchive posts={posts} />
     </div>
   )

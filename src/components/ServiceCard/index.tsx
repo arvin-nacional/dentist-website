@@ -1,6 +1,6 @@
-import { AlertCircle, ArrowRight, Baby, Sparkles, SmileIcon as Tooth, Wrench } from "lucide-react"
+import { AlertCircle, ArrowRight, Baby, Sparkles, SmileIcon as Tooth, Wrench } from 'lucide-react'
 
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from '@/components/ui/card'
 
 interface ServiceCardProps {
   title: string
@@ -11,17 +11,17 @@ interface ServiceCardProps {
 export function ServiceCard({ title, description, icon }: ServiceCardProps) {
   const getIcon = () => {
     switch (icon) {
-      case "Tooth":
+      case 'Tooth':
         return <Tooth className="h-6 w-6 text-teal-600" />
-      case "Sparkles":
+      case 'Sparkles':
         return <Sparkles className="h-6 w-6 text-teal-600" />
-      case "Wrench":
+      case 'Wrench':
         return <Wrench className="h-6 w-6 text-teal-600" />
-      case "AlertCircle":
+      case 'AlertCircle':
         return <AlertCircle className="h-6 w-6 text-teal-600" />
-      case "Baby":
+      case 'Baby':
         return <Baby className="h-6 w-6 text-teal-600" />
-      case "ArrowRight":
+      case 'ArrowRight':
         return <ArrowRight className="h-6 w-6 text-teal-600" />
       default:
         return <Tooth className="h-6 w-6 text-teal-600" />

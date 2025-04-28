@@ -199,6 +199,7 @@ export interface Page {
     | FormBlock
     | FeaturedServicesBlock
     | TestimonialBlock
+    | ServiceTabs
   )[];
   meta?: {
     title?: string | null;
@@ -250,6 +251,16 @@ export interface Post {
   };
   publishedAt?: string | null;
   authors?: (string | User)[] | null;
+  /**
+   * Estimated reading time (e.g., "5 min read")
+   */
+  readTime?: string | null;
+  tags?:
+    | {
+        tag: string;
+        id?: string | null;
+      }[]
+    | null;
   populatedAuthors?:
     | {
         id?: string | null;
@@ -506,21 +517,8 @@ export interface MediaBlock {
  * via the `definition` "ArchiveBlock".
  */
 export interface ArchiveBlock {
-  introContent?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  heading?: string | null;
+  description?: string | null;
   populateBy?: ('collection' | 'selection') | null;
   relationTo?: 'posts' | null;
   categories?: (string | Category)[] | null;
@@ -774,6 +772,35 @@ export interface TestimonialBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'testimonial';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServiceTabs".
+ */
+export interface ServiceTabs {
+  heading?: string | null;
+  description?: string | null;
+  categories?:
+    | {
+        /**
+         * A unique identifier for this tab (e.g., preventative, cosmetic, restorative)
+         */
+        tabId: string;
+        title: string;
+        description?: string | null;
+        services?:
+          | {
+              title: string;
+              description: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'serviceTabs';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1067,6 +1094,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         featuredServices?: T | FeaturedServicesBlockSelect<T>;
         testimonial?: T | TestimonialBlockSelect<T>;
+        serviceTabs?: T | ServiceTabsSelect<T>;
       };
   meta?:
     | T
@@ -1146,7 +1174,8 @@ export interface MediaBlockSelect<T extends boolean = true> {
  * via the `definition` "ArchiveBlock_select".
  */
 export interface ArchiveBlockSelect<T extends boolean = true> {
-  introContent?: T;
+  heading?: T;
+  description?: T;
   populateBy?: T;
   relationTo?: T;
   categories?: T;
@@ -1206,6 +1235,31 @@ export interface TestimonialBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServiceTabs_select".
+ */
+export interface ServiceTabsSelect<T extends boolean = true> {
+  heading?: T;
+  description?: T;
+  categories?:
+    | T
+    | {
+        tabId?: T;
+        title?: T;
+        description?: T;
+        services?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -1223,6 +1277,13 @@ export interface PostsSelect<T extends boolean = true> {
       };
   publishedAt?: T;
   authors?: T;
+  readTime?: T;
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
   populatedAuthors?:
     | T
     | {

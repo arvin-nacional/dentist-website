@@ -24,15 +24,22 @@ export default async function Page() {
       slug: true,
       categories: true,
       meta: true,
+      authors: true,
+      populatedAuthors: true,
+      readTime: true,
     },
   })
 
   return (
-    <div className="pt-24 pb-24">
+    <div className="pb-24">
       <PageClient />
       <div className="container mb-16">
-        <div className="prose dark:prose-invert max-w-none">
-          <h1>Posts</h1>
+        <div className="prose dark:prose-invert max-w-none text-center">
+          <h1 className="text-3xl font-bold">Dental Health Blog</h1>
+          <p className="text-muted-foreground">
+            Stay informed with the latest dental health tips, treatment innovations, and practice
+            news.
+          </p>
         </div>
       </div>
 

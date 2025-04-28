@@ -72,7 +72,7 @@ export const FeaturedServicesBlock: React.FC<FeaturedServicesBlockProps> = ({
         {viewAllLink && (
           <div className="text-center mt-12">
             <Link href={viewAllLink}>
-              <Button variant="outline" className="bg-background hover:bg-accent">
+              <Button variant="outline" className="">
                 View All Services
               </Button>
             </Link>

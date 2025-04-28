@@ -26,7 +26,7 @@ export const TestimonialBlockComponent: React.FC<TestimonialProps> = ({
   testimonials,
 }) => {
   return (
-    <section className="py-16 ">
+    <section className="py-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-4">
@@ -39,11 +39,14 @@ export const TestimonialBlockComponent: React.FC<TestimonialProps> = ({
         </div>
 
         <div className="container mx-auto">
-          <Carousel className="w-full">
+          <Carousel className="w-full ">
             <CarouselContent>
               {testimonials ? (
                 testimonials.map((testimonial, index) => (
-                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4 pr-4 h-full">
+                  <CarouselItem
+                    key={index}
+                    className="md:basis-1/2 lg:basis-1/3 pl-4 pr-4 h-full mb-4"
+                  >
                     <div className="h-full">
                       <TestimonialCard
                         name={testimonial.name}
