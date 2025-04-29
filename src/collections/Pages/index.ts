@@ -24,6 +24,8 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { MissionValuesBlock } from '@/blocks/MissionValues/config'
+import { FacilityBlock } from '@/blocks/Facility/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -89,6 +91,8 @@ export const Pages: CollectionConfig<'pages'> = {
                 TestimonialBlock,
                 ServiceTabsBlock,
                 ContactInfoBlock,
+                MissionValuesBlock,
+                FacilityBlock,
               ],
               required: true,
               admin: {

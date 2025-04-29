@@ -11,6 +11,8 @@ import { FeaturedServicesBlock } from '@/blocks/FeaturedServices/Component'
 import { TestimonialBlockComponent } from '@/blocks/Testimonial/Component'
 import { ServiceTabs } from '@/blocks/ServiceTabs/Component'
 import { ContactInfoComponent } from '@/blocks/ContactInfo'
+import { MissionValuesBlockComponent } from '@/blocks/MissionValues/Component'
+import { FacilityBlockComponent } from '@/blocks/Facility/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -22,6 +24,8 @@ const blockComponents = {
   testimonial: TestimonialBlockComponent,
   serviceTabs: ServiceTabs,
   contactInfo: ContactInfoComponent,
+  missionValues: MissionValuesBlockComponent,
+  facility: FacilityBlockComponent,
 }
 
 export const RenderBlocks: React.FC<{

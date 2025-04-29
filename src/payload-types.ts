@@ -201,6 +201,8 @@ export interface Page {
     | TestimonialBlock
     | ServiceTabs
     | ContactInfoBlock
+    | MissionValuesBlock
+    | FacilityBlock
   )[];
   meta?: {
     title?: string | null;
@@ -826,6 +828,51 @@ export interface ContactInfoBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MissionValuesBlock".
+ */
+export interface MissionValuesBlock {
+  missionTitle?: string | null;
+  missionDescription?: string | null;
+  missionPoints?:
+    | {
+        point?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  valuesTitle?: string | null;
+  values?:
+    | {
+        icon: 'heart' | 'shield' | 'checkCircle' | 'users';
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'missionValues';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FacilityBlock".
+ */
+export interface FacilityBlock {
+  title?: string | null;
+  description?: string | null;
+  facilities?:
+    | {
+        title: string;
+        description: string;
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'facility';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1118,6 +1165,8 @@ export interface PagesSelect<T extends boolean = true> {
         testimonial?: T | TestimonialBlockSelect<T>;
         serviceTabs?: T | ServiceTabsSelect<T>;
         contactInfo?: T | ContactInfoBlockSelect<T>;
+        missionValues?: T | MissionValuesBlockSelect<T>;
+        facility?: T | FacilityBlockSelect<T>;
       };
   meta?:
     | T
@@ -1303,6 +1352,49 @@ export interface ContactInfoBlockSelect<T extends boolean = true> {
     | {
         weekdays?: T;
         weekend?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MissionValuesBlock_select".
+ */
+export interface MissionValuesBlockSelect<T extends boolean = true> {
+  missionTitle?: T;
+  missionDescription?: T;
+  missionPoints?:
+    | T
+    | {
+        point?: T;
+        id?: T;
+      };
+  valuesTitle?: T;
+  values?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FacilityBlock_select".
+ */
+export interface FacilityBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  facilities?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        id?: T;
       };
   id?: T;
   blockName?: T;
