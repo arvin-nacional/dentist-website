@@ -26,6 +26,8 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import { MissionValuesBlock } from '@/blocks/MissionValues/config'
 import { FacilityBlock } from '@/blocks/Facility/config'
+import { DentistProfileBlock } from '@/blocks/DentistProfile/config'
+import { TreatmentProcessBlock } from '@/blocks/TreatmentProcess/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -93,6 +95,8 @@ export const Pages: CollectionConfig<'pages'> = {
                 ContactInfoBlock,
                 MissionValuesBlock,
                 FacilityBlock,
+                DentistProfileBlock,
+                TreatmentProcessBlock,
               ],
               required: true,
               admin: {

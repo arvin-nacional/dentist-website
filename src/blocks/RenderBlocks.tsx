@@ -13,6 +13,8 @@ import { ServiceTabs } from '@/blocks/ServiceTabs/Component'
 import { ContactInfoComponent } from '@/blocks/ContactInfo'
 import { MissionValuesBlockComponent } from '@/blocks/MissionValues/Component'
 import { FacilityBlockComponent } from '@/blocks/Facility/Component'
+import { DentistProfileBlockComponent } from '@/blocks/DentistProfile/Component'
+import { TreatmentProcessBlockComponent } from '@/blocks/TreatmentProcess/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -26,6 +28,8 @@ const blockComponents = {
   contactInfo: ContactInfoComponent,
   missionValues: MissionValuesBlockComponent,
   facility: FacilityBlockComponent,
+  dentistProfile: DentistProfileBlockComponent,
+  treatmentProcess: TreatmentProcessBlockComponent,
 }
 
 export const RenderBlocks: React.FC<{

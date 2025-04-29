@@ -15,7 +15,9 @@ export const FeaturedServicesBlock: React.FC<FeaturedServicesBlockProps> = ({
     <section className="py-16 bg-muted/40">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-foreground mb-4">{heading || 'Our Services'}</h2>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+            {heading || 'Our Services'}
+          </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             {description ||
               'We provide comprehensive dental care with a gentle touch, ensuring your comfort and oral health.'}
