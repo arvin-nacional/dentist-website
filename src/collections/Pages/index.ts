@@ -28,6 +28,7 @@ import { MissionValuesBlock } from '@/blocks/MissionValues/config'
 import { FacilityBlock } from '@/blocks/Facility/config'
 import { DentistProfileBlock } from '@/blocks/DentistProfile/config'
 import { TreatmentProcessBlock } from '@/blocks/TreatmentProcess/config'
+import { BeforeAfterCasesBlock } from '@/blocks/BeforeAfterCasesBlock'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -97,6 +98,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 FacilityBlock,
                 DentistProfileBlock,
                 TreatmentProcessBlock,
+                BeforeAfterCasesBlock,
               ],
               required: true,
               admin: {

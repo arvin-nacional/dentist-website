@@ -205,6 +205,7 @@ export interface Page {
     | FacilityBlock
     | DentistProfileBlock
     | TreatmentProcessBlock
+    | BeforeAfterCasesBlock
   )[];
   meta?: {
     title?: string | null;
@@ -934,6 +935,38 @@ export interface TreatmentProcessBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BeforeAfterCasesBlock".
+ */
+export interface BeforeAfterCasesBlock {
+  title: string;
+  description?: string | null;
+  categories?:
+    | {
+        name: string;
+        /**
+         * Unique identifier for this category, used for tab filtering (e.g., "cosmetic", "restorative")
+         */
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  cases?:
+    | {
+        title: string;
+        category: 'Cosmetic Dentistry' | 'Restorative Dentistry' | 'Orthodontics' | 'Dental Implants';
+        treatment: string;
+        duration: string;
+        beforeImage: string | Media;
+        afterImage: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'beforeAfterCases';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1230,6 +1263,7 @@ export interface PagesSelect<T extends boolean = true> {
         facility?: T | FacilityBlockSelect<T>;
         dentistProfile?: T | DentistProfileBlockSelect<T>;
         treatmentProcess?: T | TreatmentProcessBlockSelect<T>;
+        beforeAfterCases?: T | BeforeAfterCasesBlockSelect<T>;
       };
   meta?:
     | T
@@ -1507,6 +1541,34 @@ export interface TreatmentProcessBlockSelect<T extends boolean = true> {
         id?: T;
       };
   backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BeforeAfterCasesBlock_select".
+ */
+export interface BeforeAfterCasesBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  categories?:
+    | T
+    | {
+        name?: T;
+        value?: T;
+        id?: T;
+      };
+  cases?:
+    | T
+    | {
+        title?: T;
+        category?: T;
+        treatment?: T;
+        duration?: T;
+        beforeImage?: T;
+        afterImage?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
