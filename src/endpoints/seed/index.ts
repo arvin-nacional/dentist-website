@@ -42,18 +42,24 @@ export const seed = async ({
 
   // clear the database
   await Promise.all(
-    globals.map((global) =>
-      payload.updateGlobal({
+    globals.map((global) => {
+      // Create a properly typed data object based on the global slug
+      const data: Record<string, unknown> = {}
+      
+      // Add navItems only for header and footer globals which have this field
+      if (global === 'header' || global === 'footer') {
+        data.navItems = []
+      }
+
+      return payload.updateGlobal({
         slug: global,
-        data: {
-          navItems: [],
-        },
+        data,
         depth: 0,
         context: {
           disableRevalidate: true,
         },
-      }),
-    ),
+      })
+    }),
   )
 
   await Promise.all(
@@ -310,7 +316,7 @@ export const seed = async ({
     payload.updateGlobal({
       slug: 'footer',
       data: {
-        navItems: [
+        quickLinks: [
           {
             link: {
               type: 'custom',
