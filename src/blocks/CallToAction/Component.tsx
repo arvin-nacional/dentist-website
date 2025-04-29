@@ -12,8 +12,8 @@ export const CallToActionBlock: React.FC<CTABlockProps> = ({ links, richText }) 
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Ready to Transform Your Smile?</h2>
           <p className="text-gray-600">
-            Schedule a consultation to discuss how we can help you achieve the smile you've always
-            wanted.
+            Schedule a consultation to discuss how we can help you achieve the smile you&apos;ve
+            always wanted.
           </p>
           {richText && <RichText className="hidden" data={richText} enableGutter={false} />}
         </div>

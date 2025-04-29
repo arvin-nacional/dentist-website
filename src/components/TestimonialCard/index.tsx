@@ -23,18 +23,13 @@ export function TestimonialCard({ name, image, quote, rating }: TestimonialCardP
               When image is falsy, we use a placeholder
             */}
             {typeof image === 'object' ? (
-              <ImageMedia 
-                alt={name}
-                fill 
-                imgClassName="object-cover" 
-                resource={image}
-              />
+              <ImageMedia alt={name} fill imgClassName="object-cover" resource={image} />
             ) : (
-              <ImageMedia 
-                src={image || "/placeholder.svg"}
+              <ImageMedia
+                src={image || '/placeholder.svg'}
                 alt={name}
-                fill 
-                imgClassName="object-cover" 
+                fill
+                imgClassName="object-cover"
               />
             )}
           </div>
@@ -43,7 +38,7 @@ export function TestimonialCard({ name, image, quote, rating }: TestimonialCardP
               <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
             ))}
           </div>
-          <p className="text-muted-foreground italic mb-4 flex-grow">"{quote}"</p>
+          <p className="text-muted-foreground italic mb-4 flex-grow">&quot;{quote}&quot;</p>
           <h4 className="font-medium text-foreground">{name}</h4>
         </div>
       </CardContent>
