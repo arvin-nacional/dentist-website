@@ -80,9 +80,6 @@ export default buildConfig({
         region: process.env.S3_REGION || '',
         forcePathStyle: true,
       },
-      // Enable client uploads for better performance
-      // and to avoid 4.5MB file size limitation on Vercel
-      clientUploads: true,
     }),
     // storage-adapter-placeholder
   ],

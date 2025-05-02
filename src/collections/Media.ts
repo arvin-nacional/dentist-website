@@ -45,13 +45,13 @@ export const Media: CollectionConfig = {
     adminThumbnail: ({ doc }: { doc: any }) => {
       // Check if the document has sizes with a thumbnail URL
       if (doc?.sizes?.thumbnail?.url) {
-        return doc.sizes.thumbnail.url;
+        return doc.sizes.thumbnail.url
       }
       // Fall back to constructing the S3 URL directly
       if (doc?.filename) {
-        return `https://${process.env.S3_BUCKET}.s3.${process.env.S3_REGION}.amazonaws.com/${doc.filename}`;
+        return `https://${process.env.S3_BUCKET}.s3.${process.env.S3_REGION}.amazonaws.com/${doc.filename}`
       }
-      return null;
+      return null
     },
     focalPoint: true,
     imageSizes: [
