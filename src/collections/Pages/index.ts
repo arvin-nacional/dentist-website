@@ -29,6 +29,7 @@ import { FacilityBlock } from '@/blocks/Facility/config'
 import { DentistProfileBlock } from '@/blocks/DentistProfile/config'
 import { TreatmentProcessBlock } from '@/blocks/TreatmentProcess/config'
 import { BeforeAfterCasesBlock } from '@/blocks/BeforeAfterCasesBlock'
+import { CalendlyBlock } from '@/blocks/CalendlyBlock/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -99,6 +100,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 DentistProfileBlock,
                 TreatmentProcessBlock,
                 BeforeAfterCasesBlock,
+                CalendlyBlock,
               ],
               required: true,
               admin: {

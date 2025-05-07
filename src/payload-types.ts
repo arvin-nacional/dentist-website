@@ -206,6 +206,7 @@ export interface Page {
     | DentistProfileBlock
     | TreatmentProcessBlock
     | BeforeAfterCasesBlock
+    | CalendlyBlock
   )[];
   meta?: {
     title?: string | null;
@@ -967,6 +968,34 @@ export interface BeforeAfterCasesBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CalendlyBlock".
+ */
+export interface CalendlyBlock {
+  /**
+   * Enter your Calendly scheduling page URL (e.g., https://calendly.com/your-username)
+   */
+  calendlyURL: string;
+  title?: string | null;
+  description?: string | null;
+  /**
+   * When checked, event details will be hidden in the embedded scheduler
+   */
+  hideEventTypeDetails?: boolean | null;
+  /**
+   * When checked, landing page details will be hidden in the embedded scheduler
+   */
+  hideLandingPageDetails?: boolean | null;
+  /**
+   * Height of the Calendly widget in pixels
+   */
+  height?: number | null;
+  backgroundColor?: ('white' | 'gray' | 'blue' | 'teal') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'calendlyBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1264,6 +1293,7 @@ export interface PagesSelect<T extends boolean = true> {
         dentistProfile?: T | DentistProfileBlockSelect<T>;
         treatmentProcess?: T | TreatmentProcessBlockSelect<T>;
         beforeAfterCases?: T | BeforeAfterCasesBlockSelect<T>;
+        calendlyBlock?: T | CalendlyBlockSelect<T>;
       };
   meta?:
     | T
@@ -1569,6 +1599,21 @@ export interface BeforeAfterCasesBlockSelect<T extends boolean = true> {
         afterImage?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CalendlyBlock_select".
+ */
+export interface CalendlyBlockSelect<T extends boolean = true> {
+  calendlyURL?: T;
+  title?: T;
+  description?: T;
+  hideEventTypeDetails?: T;
+  hideLandingPageDetails?: T;
+  height?: T;
+  backgroundColor?: T;
   id?: T;
   blockName?: T;
 }

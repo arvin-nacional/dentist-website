@@ -1,5 +1,6 @@
 import { Checkbox } from './Checkbox'
 import { Country } from './Country'
+import { Date } from './Date'
 import { Email } from './Email'
 import { Message } from './Message'
 import { Number } from './Number'
@@ -11,6 +12,7 @@ import { Textarea } from './Textarea'
 export const fields = {
   checkbox: Checkbox,
   country: Country,
+  date: Date,
   email: Email,
   message: Message,
   number: Number,

@@ -16,6 +16,7 @@ import { FacilityBlockComponent } from '@/blocks/Facility/Component'
 import { DentistProfileBlockComponent } from '@/blocks/DentistProfile/Component'
 import { TreatmentProcessBlockComponent } from '@/blocks/TreatmentProcess/Component'
 import { BeforeAfterCasesBlockComponent } from '@/blocks/BeforeAfterCasesBlock'
+import { CalendlyBlockComponent } from '@/blocks/CalendlyBlock/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -32,6 +33,7 @@ const blockComponents = {
   dentistProfile: DentistProfileBlockComponent,
   treatmentProcess: TreatmentProcessBlockComponent,
   beforeAfterCases: BeforeAfterCasesBlockComponent,
+  calendlyBlock: CalendlyBlockComponent,
 }
 
 export const RenderBlocks: React.FC<{
